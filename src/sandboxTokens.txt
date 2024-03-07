@@ -1,0 +1,3 @@
+application_id = sandbox-sq0idb-VJRw3fsbLnl9pieyHixr2Q
+access_token = EAAAl3pTdEwFrPa1U_4mBBHJrCzvwMSz_55b5VuOOEEzb7_EeYQFnDU9O-cLFnN-
+location_id = LTA3P3HJBFK8A
