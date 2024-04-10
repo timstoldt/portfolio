@@ -1,44 +1,76 @@
 // Home.js
 
-import React, { useEffect, useState } from 'react';
-import Calender from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import './Home.css';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
 
+import BookingCalendar from "../components/bookingCalendar";
+import UnitTile from "../components/unitTile";
+
+import "./Home.css";
+import RenterInfoForm from "../components/renterInfoForm";
+import UnitPaymentForm from "../components/unitPaymentForm";
+import UnitTileList from "../components/unitTileList";
 
 function Home() {
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [makeClientClicked, setMakeClientCliced] = useState(false);
-  const navigate = useNavigate();
+  const [selectedDates, setSelectedDates] = useState([]);
+  const [selectedUnits, setSelectedUnits] = useState({}); // {"<date>": "<unit_id"}
+  const [renterInfo, setRenterInfo] = useState(null);
+  const [paymentSubmitted, setPaymentSubmitted] = useState(false);
 
-  const handleClickDay = (value, event) => {
-    setSelectedDate(value);
+  // useEffect(() => {
+  // }, [selectedDates])
+
+  const getSelectedDates = (dates) => {
+    setSelectedDates(Array.from(dates).sort());
   };
 
-  const handleClickMakeClient = () => {
-    setMakeClientCliced(true);
+  const getFormSubmitted = (info) => {
+    if (info) {
+      setRenterInfo(info);
+    }
+  };
+
+  const getPaymentSubmitted = (submitted) => {
+    if (submitted) {
+      setPaymentSubmitted(true);
+    }
+  };
+
+  // update selectedUnits
+  const onUnitSelection = (e, date) => {
+    setSelectedUnits({
+      ...selectedUnits, // copy old fields
+      date: e.target.value,
+    });
+  };
+
+  if (!paymentSubmitted) {
+    return (
+      <>
+        <BookingCalendar getSelectedDates={getSelectedDates} />
+
+        <div className="selected-dates">
+          {selectedDates.map((date) => (
+            <div className="selected-dates-date">
+              <p>{date}</p>
+              <UnitTileList date={date} />
+            </div>
+          ))}
+        </div>
+
+        {!renterInfo ? (
+          <RenterInfoForm getFormSubmitted={getFormSubmitted} />
+        ) : (
+          <UnitPaymentForm getPaymentSubmitted={getPaymentSubmitted} />
+        )}
+      </>
+    );
+  } else {
+    return (
+      <>
+        <p>SUCCESS PAGE</p>
+      </>
+    );
   }
-
-  useEffect(() => {
-    if (selectedDate) {
-      const url = `/selectunit`;
-      navigate(url, { state: selectedDate });
-    }
-  }, [selectedDate, navigate]);
-
-  useEffect(() => {
-    if (makeClientClicked) {
-      const url = `/newClient`;
-      navigate(url);
-    }
-  }, [makeClientClicked, navigate]);
-
-
-  return <div>
-    <Calender onClickDay={handleClickDay}/>
-    <button onClick={handleClickMakeClient}>Make Client</button>
-  </div>;
-};
+}
 
 export default Home;
