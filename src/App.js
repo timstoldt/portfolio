@@ -1,26 +1,31 @@
 // App.js
 
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
-import Contact from './pages/Contact';
-import Navigation from './pages/Navigation';
-import SelectUnit from './pages/SelectUnit';
-import NewClient from './pages/NewClient';
-
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Navigation from "./components/navigation/navigation.js";
+import "./App.css";
 function App() {
   return (
     <Router>
-        <Routes>
-            <Route path="/" element={<Navigation />}>
-                <Route path="/" element={<Home />} />
-                <Route path="/contact" element={<Contact/>} />
-                <Route path="/selectunit" element={<SelectUnit />}/>
-                <Route path="/newclient" element={<NewClient />}/>
-            </Route>
-        </Routes>
+      <Routes>
+        <Route path="/" element={<Navigation />}>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/resume"
+            element={
+              <embed
+                alt="my resume"
+                title="Resume"
+                type="application/pdf"
+                src="resume.pdf"
+              />
+            }
+          />
+        </Route>
+      </Routes>
     </Router>
   );
-};
+}
 
 export default App;

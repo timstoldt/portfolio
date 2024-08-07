@@ -1,0 +1,51 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  color: var(--main-bg-color);
+  align-items: center;
+
+  font-family: "Courier New", Courier, monospace;
+}
+
+.big-name {
+  font-size: 96px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.animation-container {
+  font-size: 30px;
+  text-align: center;
+}
+
+.animation {
+  width: max-content;
+}
+
+.contact-img {
+  width: 50px;
+  margin: 0.5rem;
+  transition: 0.5s;
+}
+
+.contact-img:hover {
+  width: 60px;
+}
+
+.resume-btn {
+  margin: 0.5rem;
+  border: 1px solid var(--main-bg-color) !important;
+  border-radius: 10%;
+  color: var(--main-bg--color) !important;
+}
+
+.resume-btn:hover {
+  font-weight: bold;
+  border-width: 2px !important;
+}
+
+@media (max-width: 768px) {
+  .big-name {
+    font-size: 56px;
+  }
+}
