@@ -59,6 +59,6 @@ This is a portfolio website for employers to view my projects and resume
 
 ## Contact
 
-- For any inquiries or issues, feel free to reach out: https://tim.stoldt.us
+- For any inquiries or issues, feel free to reach out: https://www.linkedin.com/in/tim-stoldt/
 
 Thank you for using Visiting!
